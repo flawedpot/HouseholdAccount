@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class BookdataDetail extends Bookdata {
-	private String category;		/* 支出のカテゴリ */
-	private String memo;			/* 支出に関するメモ書き */
+	private String category;		/* 収支のカテゴリ */
+	private String memo;			/* 収支に関するメモ書き */
 
 	public BookdataDetail() {
 		super();
@@ -14,12 +14,12 @@ public class BookdataDetail extends Bookdata {
 	@Override
 	public void AddBookdata() {
 		super.AddBookdata();
-		boolean inputFlag = false;
+		boolean inputFlag = true;
 		try {
 			while (inputFlag) {
 				inputCategory();
 				inputMemo();
-				inputFlag = true;
+				inputFlag = false;
 			}
 		} catch (IllegalArgumentException iae) {
 			System.err.println("不正な値が入力されました。始めからやり直してください");
