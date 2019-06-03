@@ -19,7 +19,6 @@ public class Book {
 				if (data.getDay().before(this.book.get(i).getDay())) {
 					this.book.add(i, data);
 				}
-				i++;
 			}
 		}
 	}
