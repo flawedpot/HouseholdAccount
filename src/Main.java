@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		int i = 4;
+		Book book = new Book();
 
 		while(i != 0) {
 			System.out.println("実行したい操作を選択してください：");
@@ -11,12 +12,12 @@ public class Main {
 			switch (i = scMode.nextInt()) {
 			case 1:
 				Bookdata data = null;
-				data = selectInputType();
-				data.AddBookdata();
-				System.out.println(data);
+				data = selectInputType();		// Bookdataインスタンス生成
+				data.AddBookdata();				// インスタンスの各フィールド値を入力
+				book.addDataToList(data);		// インスタンスをArrayListに追加
 				break;
 			case 2:
-				/* 後でつくる */
+				book.showDataAll();
 				break;
 			case 3:
 				/* 後でつくる */

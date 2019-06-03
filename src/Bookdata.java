@@ -20,17 +20,16 @@ public class Bookdata {
 	public void AddBookdata() {
 		boolean inputFlag = true;
 		try {
-			while (inputFlag) {
+			while (true) {
 				inputType();
 				inputAmount();
 				inputDay();
-				inputFlag = false;
+				break;
 			}
 		} catch (IllegalArgumentException iae) {
 			System.err.println("不正な値が入力されました。始めからやり直してください");
 		} catch (ParseException pe) {
-			System.err.println("型変換に失敗しました。プログラムを終了します");
-			System.exit(1);
+			System.err.println("型変換に失敗しました。始めからやり直してください");
 		}
 	}
 
@@ -48,7 +47,6 @@ public class Bookdata {
 		else {
 			throw new IllegalArgumentException("不正な値が入力されました：" + i);
 		}
-
 	}
 
 	public void inputAmount() {
@@ -81,7 +79,7 @@ public class Bookdata {
 		return this.amount;
 	}
 
-	public Date getday() {
+	public Date getDay() {
 		return this.day;
 	}
 
@@ -94,7 +92,7 @@ public class Bookdata {
 		this.amount = amount;
 	}
 
-	public void setPayDay(Date day) {
+	public void setDay(Date day) {
 		this.day = day;
 	}
 
