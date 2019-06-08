@@ -4,6 +4,7 @@ public class Main {
 	public static void main(String[] args) {
 		int i = 4;
 		Book book = new Book();
+		book.inputData();	// Book.csvからデータを読み込んでBookに格納する */
 
 		while(i != 0) {
 			System.out.println("実行したい操作を選択してください：");
@@ -17,10 +18,10 @@ public class Main {
 				book.addDataToList(data);		// インスタンスをArrayListに追加
 				break;
 			case 2:
-				book.showDataAll();
+				System.out.print(book.toString());	// Bookの一覧を表示する
 				break;
 			case 3:
-				/* 後でつくる */
+				book.outputData();		// BookのデータをBook.csvに書き出す
 				break;
 			default:
 				System.out.println("プログラムを終了します");

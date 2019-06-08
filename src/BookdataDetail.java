@@ -1,10 +1,21 @@
+import java.util.Date;
 import java.util.Scanner;
 
 public class BookdataDetail extends Bookdata {
 	private String category;		/* 収支のカテゴリ */
 	private String memo;			/* 収支に関するメモ書き */
 
-	public BookdataDetail() {
+	public BookdataDetail (BookdataType type,
+							int amount,
+							Date day,
+							String category,
+							String memo) {
+		super(type, amount, day);
+		this.category = category;
+		this.memo = memo;
+	}
+
+	public BookdataDetail () {
 		super();
 		this.category = "";
 		this.memo = "";
@@ -65,8 +76,8 @@ public class BookdataDetail extends Bookdata {
 	@Override
 	public String toString() {
 		return super.toString()
-				+ ", カテゴリ：" + this.category
-				+ ", メモ：" + this.memo;
+				+ "," + this.category
+				+ "," + this.memo;
 	}
 
 	/* equalsメソッドのオーバライド */

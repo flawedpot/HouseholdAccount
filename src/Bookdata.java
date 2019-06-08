@@ -10,15 +10,21 @@ public class Bookdata {
 	private int amount;			/* 金額 */
 	private Date day;				/* 支出日 */
 
+	public Bookdata(BookdataType type, int amount, Date day) {
+		this.type = type;
+		this.amount = amount;
+		this.day = day;
+	}
+
 	public Bookdata() {
-		this.type = BookdataType.EXPEND;
-		this.amount = 0;
-		this.day = new Date();
+		this(BookdataType.EXPEND, 0, new Date());
 	}
 
 	/* インスタンス生成時に呼び出す初期化用メソッド */
 	public void AddBookdata() {
 		boolean inputFlag = true;
+
+		/* 各フィールドを入力させるメソッドを呼び出す */
 		try {
 			while (true) {
 				inputType();
@@ -99,14 +105,8 @@ public class Bookdata {
 	/* toStringメソッドのオーバライド */
 	@Override
 	public String toString() {
-		String str;
 		SimpleDateFormat f = new SimpleDateFormat("yyyy/mm/dd");
-
-		if (this.type == BookdataType.INCOME) str = "収入";
-		else str = "支出";
-		return "タイプ："+ str
-				+ ", 金額：" + this.amount
-				+ ", 日付：" + f.format(this.day);
+		return this.type + "," + this.amount + "," + f.format(this.day);
 	}
 
 	/* equalsメソッドのオーバライド */
@@ -123,9 +123,9 @@ public class Bookdata {
 		c2.setTime(data.day);
 		if (!this.type.equals(data.type))return false;
 		if (this.amount != data.amount)return false;
-		if (c1.get(Calendar.YEAR) != c2.get(Calendar.YEAR) )return false;
-		if (c1.get(Calendar.MONTH) != c2.get(Calendar.MONTH) )return false;
-		if (c1.get(Calendar.DAY_OF_MONTH) != c2.get(Calendar.DAY_OF_MONTH) )return false;
+		if (c1.get(Calendar.YEAR) != c2.get(Calendar.YEAR))return false;
+		if (c1.get(Calendar.MONTH) != c2.get(Calendar.MONTH))return false;
+		if (c1.get(Calendar.DAY_OF_MONTH) != c2.get(Calendar.DAY_OF_MONTH))return false;
 		return true;
 	}
 
