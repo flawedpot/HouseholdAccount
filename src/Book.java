@@ -24,7 +24,7 @@ public class Book {
 	}
 
 	/**
-	 *  生成した家計簿データ(Bookdataインスタンス)を、日付順に整列された家計簿(book)に追加するメソッド
+	 *  生成した家計簿データ(Bookdataインスタンス)を、日付順に整列された家計簿(book)に追加するメソッド。
 	 *  @param data 家計簿データ
 	 */
 	public void addDataToList(Bookdata data) {
@@ -45,7 +45,7 @@ public class Book {
 	}
 
 	/**
-	 * CSVファイルからすべての家計簿データを読み込んでBookdataインスタンスを生成し、bookに格納する。
+	 * CSVファイルからすべての家計簿データを読み込んでBookdataインスタンスを生成し、bookに格納するメソッド。
 	 * CSVファイルに記載されているデータは、日付順に整列されている前提で処理している。
 	 */
 	public void inputData () {
@@ -101,7 +101,7 @@ public class Book {
 	}
 
 	/**
-	 * bookに格納されているすべてのデータをCSVファイルに書き出す。
+	 * bookに格納されているすべてのデータをCSVファイルに書き出すメソッド。
 	 */
 	public void outputData () {
 		FileWriter fw = null;

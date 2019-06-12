@@ -50,7 +50,7 @@ public class Bookdata {
 	}
 
 	/**
-	 * データタイプを入力するメソッド
+	 * データタイプを入力するメソッド。
 	 * @exception IllegalArgumentException
 	  				不正な値が入力されたとき
 	 */
@@ -70,7 +70,7 @@ public class Bookdata {
 	}
 
 	/**
-	 * 金額を入力するメソッド
+	 * 金額を入力するメソッド。
 	 * @exception IllegalArgumentException
 	  				不正な値が入力されたとき
 	 */
@@ -86,7 +86,7 @@ public class Bookdata {
 	}
 
 	/**
-	 * 入力日を入力するメソッド
+	 * 入力日を入力するメソッド。
 	 * @exception ParseException
 	 				入力された文字列のString型からDate型への変換に失敗したとき
 	 * @exception IllegalArgumentException
@@ -103,7 +103,7 @@ public class Bookdata {
 	}
 
 	/**
-	 * データタイプのゲッターメソッド
+	 * データタイプのゲッターメソッド。
 	 * @return データタイプ
 	 */
 	public BookdataType getBookdataType() {
@@ -111,7 +111,7 @@ public class Bookdata {
 	}
 
 	/**
-	 * 金額のゲッターメソッド
+	 * 金額のゲッターメソッド。
 	 * @return 金額
 	 */
 	public int getAmount() {
@@ -119,7 +119,7 @@ public class Bookdata {
 	}
 
 	/**
-	 * 入力日のゲッターメソッド
+	 * 入力日のゲッターメソッド。
 	 * @return 入力日
 	 */
 	public Date getDay() {

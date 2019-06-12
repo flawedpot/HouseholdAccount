@@ -72,7 +72,7 @@ public class BookdataDetail extends Bookdata {
 	}
 
 	/**
-	 * カテゴリのゲッターメソッド
+	 * カテゴリのゲッターメソッド。
 	 * @return カテゴリ
 	 */
 	public String getCategory () {
@@ -80,7 +80,7 @@ public class BookdataDetail extends Bookdata {
 	}
 
 	/**
-	 * メモのゲッターメソッド
+	 * メモのゲッターメソッド。
 	 * @return メモ
 	 */
 	public String getMemo() {
