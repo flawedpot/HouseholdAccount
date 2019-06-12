@@ -28,8 +28,12 @@ public class Main {
 			case 3:
 				book.outputData();		// BookのデータをBook.csvに書き出す
 				break;
-			default:
+			case 0:
 				System.out.println("プログラムを終了します");
+				break;
+			default:
+				System.err.println("0～3の値を入力してください");
+				break;
 			}
 		}
 	}
