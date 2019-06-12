@@ -1,14 +1,20 @@
+/**
+ * 家計簿データクラス
+ */
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
-/* 家計簿に登録されるデータのクラス */
 public class Bookdata {
-	private BookdataType type;		/* 収入か支出か */
-	private int amount;			/* 金額 */
-	private Date day;				/* 支出日 */
+	/** データタイプ(収入 / 支出) */
+	private BookdataType type;
+	/** 金額 */
+	private int amount;
+	/** 入力日 */
+	private Date day;
 
 	public Bookdata(BookdataType type, int amount, Date day) {
 		this.type = type;
@@ -20,7 +26,9 @@ public class Bookdata {
 		this(BookdataType.EXPEND, 0, new Date());
 	}
 
-	/* インスタンス生成時に呼び出す初期化用メソッド */
+	/**
+	 * インスタンス生成直後に呼び出す、家計簿データの各フィールドの値を入力させるメソッド。
+	 */
 	public void AddBookdata() {
 		boolean inputFlag = true;
 
@@ -34,13 +42,19 @@ public class Bookdata {
 			}
 		} catch (IllegalArgumentException iae) {
 			System.err.println("不正な値が入力されました。始めからやり直してください");
+			iae.printStackTrace();
 		} catch (ParseException pe) {
 			System.err.println("型変換に失敗しました。始めからやり直してください");
+			pe.printStackTrace();
 		}
 	}
 
-	/* 各フィールドの入力用メソッド */
-	public void inputType() {
+	/**
+	 * データタイプを入力するメソッド
+	 * @exception IllegalArgumentException
+	  				不正な値が入力されたとき
+	 */
+	private void inputType() {
 		int i;
 		System.out.println("データタイプを選択してください");
 		System.out.println("収入：0, 支出:1");
@@ -55,7 +69,12 @@ public class Bookdata {
 		}
 	}
 
-	public void inputAmount() {
+	/**
+	 * 金額を入力するメソッド
+	 * @exception IllegalArgumentException
+	  				不正な値が入力されたとき
+	 */
+	private void inputAmount() {
 		int i;
 		System.out.println("金額を入力してください");
 		Scanner scAmount = new Scanner(System.in);
@@ -66,7 +85,14 @@ public class Bookdata {
 			throw new IllegalArgumentException("不正な値が入力されました：" + i);
 	}
 
-	public void inputDay() throws ParseException {
+	/**
+	 * 入力日を入力するメソッド
+	 * @exception ParseException
+	 				入力された文字列のString型からDate型への変換に失敗したとき
+	 * @exception IllegalArgumentException
+	  				不正な値が入力されたとき
+	 */
+	private void inputDay() throws ParseException {
 		String str;
 		System.out.println("日付を入力してください");
 		System.out.println("yyyyy/mm/dd");
@@ -76,40 +102,46 @@ public class Bookdata {
 		this.day = (Date)f.parse(str);
 	}
 
-	/* 各フィールドのゲッターメソッド */
+	/**
+	 * データタイプのゲッターメソッド
+	 * @return データタイプ
+	 */
 	public BookdataType getBookdataType() {
 		return this.type;
 	}
 
+	/**
+	 * 金額のゲッターメソッド
+	 * @return 金額
+	 */
 	public int getAmount() {
 		return this.amount;
 	}
 
+	/**
+	 * 入力日のゲッターメソッド
+	 * @return 入力日
+	 */
 	public Date getDay() {
 		return this.day;
 	}
 
-	/* 各フィールドのセッターメソッド */
-	public void setBookdataType(BookdataType type) {
-		this.type = type;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
-	public void setDay(Date day) {
-		this.day = day;
-	}
-
-	/* toStringメソッドのオーバライド */
+	/**
+	 * toStringメソッドのオーバライド。
+	 * @return データタイプ,金額,入力日
+	 */
 	@Override
 	public String toString() {
 		SimpleDateFormat f = new SimpleDateFormat("yyyy/mm/dd");
 		return this.type + "," + this.amount + "," + f.format(this.day);
 	}
 
-	/* equalsメソッドのオーバライド */
+	/**
+	 * equalsメソッドにオーバライド。
+	 * データタイプ、金額、入力年月日が同じときにtrueを返す
+	 * @param o オブジェクト型変数
+	 * @return 真偽値
+	 */
 	@Override
 	public boolean equals(Object o) {
 		Calendar c1 = Calendar.getInstance();
@@ -129,7 +161,11 @@ public class Bookdata {
 		return true;
 	}
 
-	/* hashcodeメソッドのオーバライド */
+	/**
+	 * hashcodeメソッドのオーバライド。
+	 * データタイプ、金額、入力日からハッシュ値を生成する。
+	 * @return ハッシュ値
+	 */
 	@Override
 	public int hashCode() {
 		int result = 37;

@@ -1,3 +1,8 @@
+/**
+ * 家計簿クラス。
+ * 家計簿データをまとめて処理を行う。
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,13 +16,17 @@ import java.util.Date;
 import java.util.Iterator;
 
 public class Book {
+	/** 家計簿 */
 	private ArrayList<Bookdata> book;
 
 	public Book() {
 		this.book = new ArrayList<Bookdata>();
 	}
 
-	/* 生成したBookdataインスタンスを日付順に整列されたbookに追加するメソッド */
+	/**
+	 *  生成した家計簿データ(Bookdataインスタンス)を、日付順に整列された家計簿(book)に追加するメソッド
+	 *  @param data 家計簿データ
+	 */
 	public void addDataToList(Bookdata data) {
 		/* bookが空のとき、末尾にデータを追加する */
 		if (this.book.isEmpty() == true) {
@@ -35,7 +44,10 @@ public class Book {
 		}
 	}
 
-	/* CSVファイルからデータを読み込むメソッド */
+	/**
+	 * CSVファイルからすべての家計簿データを読み込んでBookdataインスタンスを生成し、bookに格納する。
+	 * CSVファイルに記載されているデータは、日付順に整列されている前提で処理している。
+	 */
 	public void inputData () {
 		File file = new File("Book.csv");
 
@@ -69,13 +81,18 @@ public class Book {
 				System.out.println("ファイルの読み込みが完了しました");
 			} catch (ParseException pe) {
 				System.err.println("型変換に失敗しました");
+				pe.printStackTrace();
 			} catch (IOException ioe) {
 				System.err.println("ファイル読み込み処理に失敗しました");
+				ioe.printStackTrace();
 			} finally {
-				try {
-					fr.close();
-				} catch (IOException ioe) {
-					System.err.println("ファイルのクローズ処理に失敗しました");
+				if (fr != null) {
+					try {
+						fr.close();
+					} catch (IOException ioe) {
+						System.err.println("ファイルのクローズ処理に失敗しました");
+						ioe.printStackTrace();
+					}
 				}
 			}
 		} else {
@@ -83,7 +100,9 @@ public class Book {
 		}
 	}
 
-	/* bookのデータをCSV形式で出力するメソッド */
+	/**
+	 * bookに格納されているすべてのデータをCSVファイルに書き出す。
+	 */
 	public void outputData () {
 		FileWriter fw = null;
 		Iterator it = this.book.iterator();
@@ -98,21 +117,32 @@ public class Book {
 			System.out.println("ファイルの書き込みが完了しました");
 		} catch (IOException ioe) {
 			System.err.println("ファイルの出力に失敗しました");
+			ioe.printStackTrace();
 		} finally {
-			try {
-				fw.close();
-			} catch (IOException ioe) {
-				System.err.println("ファイルのクローズに失敗しました");
+			if (fw != null) {
+				try {
+					fw.close();
+				} catch (IOException ioe) {
+					System.err.println("ファイルのクローズに失敗しました");
+					ioe.printStackTrace();
+				}
 			}
 		}
 	}
 
-	/* ゲッターメソッド */
+	/**
+	 * 家計簿(book)のゲッターメソッド。
+	 * @return 家計簿
+	 */
 	public ArrayList<Bookdata> getBook() {
 		return this.book;
 	}
 
-	/* toStringメソッドのオーバライド */
+	/**
+	 * toStringメソッドのオーバライド。
+	 * 家計簿(book)に格納されている全データを文字列として返す。
+	 * @return データタイプ,金額,入力日(,カテゴリ,メモ)・・・
+	 */
 	@Override
 	public String toString() {
 		StringBuilder sb  = new StringBuilder();
@@ -128,7 +158,11 @@ public class Book {
 		return sb.toString();
 	}
 
-	/* equalsメソッドのオーバライド */
+	/**
+	 * equalsメソッドにオーバライド。
+	 * @param o オブジェクト型変数
+	 * @return 真偽値
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o == this) return true;
@@ -139,7 +173,10 @@ public class Book {
 		return true;
 	}
 
-	/* hashcodeメソッドのオーバライド */
+	/**
+	 * hashcodeメソッドのオーバライド。
+	 * @return ハッシュ値
+	 */
 	@Override
 	public int hashCode() {
 		int result = 37;

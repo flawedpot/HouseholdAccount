@@ -1,9 +1,18 @@
+/**
+ * 家計簿データ(詳細)クラス。
+ * 家計簿データクラスにカテゴリフィールドとメモフィールドを追加したクラス。
+ * 家計簿データクラスに最初から上記フィールドを持たせてもよかったが、
+ * クラス継承の練習のために作成した。
+ */
+
 import java.util.Date;
 import java.util.Scanner;
 
 public class BookdataDetail extends Bookdata {
-	private String category;		/* 収支のカテゴリ */
-	private String memo;			/* 収支に関するメモ書き */
+	/** カテゴリ */
+	private String category;
+	/** メモ */
+	private String memo;
 
 	public BookdataDetail (BookdataType type,
 							int amount,
@@ -21,7 +30,9 @@ public class BookdataDetail extends Bookdata {
 		this.memo = "";
 	}
 
-	/* インスタンス生成時に呼び出す初期化用メソッド */
+	/**
+	 * インスタンス生成直後に呼び出す、家計簿データの各フィールドの値を入力させるメソッド。
+	 */
 	@Override
 	public void AddBookdata() {
 		super.AddBookdata();
@@ -34,11 +45,14 @@ public class BookdataDetail extends Bookdata {
 			}
 		} catch (IllegalArgumentException iae) {
 			System.err.println("不正な値が入力されました。始めからやり直してください");
+			iae.printStackTrace();
 		}
 	}
 
-	/* 各フィールドの入力用メソッド */
-	public void inputCategory() {
+	/**
+	 * カテゴリを入力するメソッド。
+	 */
+	private void inputCategory() {
 		String str;
 		System.out.println("カテゴリーを入力してください");
 		Scanner scCategory = new Scanner(System.in);
@@ -46,7 +60,10 @@ public class BookdataDetail extends Bookdata {
 		this.category = str;
 	}
 
-	public void inputMemo() {
+	/**
+	 * メモを入力するメソッド。
+	 */
+	private void inputMemo() {
 		String str;
 		System.out.println("メモを入力してください");
 		Scanner scMemo = new Scanner(System.in);
@@ -54,25 +71,26 @@ public class BookdataDetail extends Bookdata {
 		this.memo = str;
 	}
 
-	/* 各フィールドのゲッターメソッド */
+	/**
+	 * カテゴリのゲッターメソッド
+	 * @return カテゴリ
+	 */
 	public String getCategory () {
 		return this.category;
 	}
 
+	/**
+	 * メモのゲッターメソッド
+	 * @return メモ
+	 */
 	public String getMemo() {
 		return memo;
 	}
 
-	/* 各フィールドのセッターメソッド */
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
-
-	/* toStringメソッドのオーバライド */
+	/**
+	 * toStringメソッドのオーバライド。
+	 * @return データタイプ,金額,入力日,カテゴリ,メモ
+	 */
 	@Override
 	public String toString() {
 		return super.toString()
@@ -80,7 +98,12 @@ public class BookdataDetail extends Bookdata {
 				+ "," + this.memo;
 	}
 
-	/* equalsメソッドのオーバライド */
+	/**
+	 * equalsメソッドにオーバライド。
+	 * データタイプ、金額、入力年月日、カテゴリ、メモが同じときにtrueを返す
+	 * @param o オブジェクト型変数
+	 * @return 真偽値
+	 */
 	@Override
 	public boolean equals(Object o) {
 		BookdataDetail data = (BookdataDetail)o;
@@ -93,7 +116,11 @@ public class BookdataDetail extends Bookdata {
 		return true;
 	}
 
-	/* hashcodeメソッドのオーバライド */
+	/**
+	 * hashcodeメソッドのオーバライド。
+	 * データタイプ、金額、入力日からハッシュ値を生成する。
+	 * @return ハッシュ値
+	 */
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
