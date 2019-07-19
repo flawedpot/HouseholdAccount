@@ -39,6 +39,7 @@ public class Book {
 			for (int i = 0;i < this.book.size();i++) {
 				if (data.getDay().before(this.book.get(i).getDay())) {
 					this.book.add(i, data);
+					break;
 				}
 			}
 		}
@@ -66,12 +67,12 @@ public class Book {
 					strs = str.split(",");
 					/* Bookdataインスタンス生成 */
 					if (strs.length == 3) {
-						this.book.add(new Bookdata(BookdataType.toBookdataType(strs[0]),
+						this.book.add(new Bookdata(BookdataType.toBookdataType(Integer.parseInt(strs[0])),
 											Integer.parseInt(strs[1]),
 											(Date)f.parse(strs[2])));
 					/* BookdataDetailインスタンス生成 */
 					} else if (strs.length == 5) {
-						this.book.add(new BookdataDetail(BookdataType.toBookdataType(strs[0]),
+						this.book.add(new BookdataDetail(BookdataType.toBookdataType(Integer.parseInt(strs[0])),
 											Integer.parseInt(strs[1]),
 											(Date)f.parse(strs[2]),
 											strs[3],

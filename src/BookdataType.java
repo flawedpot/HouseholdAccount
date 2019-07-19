@@ -12,14 +12,14 @@ public enum BookdataType {
 	 * @exception IllegalArgumentException
 	 				引数の文字列が収入(INCOME)または支出(EXPEND)以外のとき。
 	 */
-	public static BookdataType toBookdataType (String str) throws IllegalArgumentException {
+	public static BookdataType toBookdataType (int type) throws IllegalArgumentException {
 		BookdataType result = EXPEND;
-		if (str.equals("INCOME")) {
+		if (type == 1) {
 			result = INCOME;
-		} else if (str.equals("EXPEND")) {
+		} else if (type == 0) {
 			/* 何もしない */
 		} else {
-			throw new IllegalArgumentException("不正な文字列を変換しようとしています：" + str);
+			throw new IllegalArgumentException("不正な文字列を変換しようとしています：" + type);
 		}
 		return result;
 	}

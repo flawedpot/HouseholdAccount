@@ -55,18 +55,12 @@ public class Bookdata {
 	  				不正な値が入力されたとき
 	 */
 	private void inputType() {
-		int i;
+		int type;
 		System.out.println("データタイプを選択してください");
-		System.out.println("収入：0, 支出:1");
+		System.out.println("支出:0, 収入：1");
 		Scanner scType = new Scanner(System.in);
-		i = scType.nextInt();
-		if (i == 0)
-			this.type = BookdataType.INCOME;
-		else if (i == 1)
-			this.type = BookdataType.EXPEND;
-		else {
-			throw new IllegalArgumentException("不正な値が入力されました：" + i);
-		}
+		type = scType.nextInt();
+		this.type = BookdataType.toBookdataType(type);
 	}
 
 	/**
